@@ -1,2 +1,3 @@
-# Idle-Survival
-Unity project
+# Idle Survival
+
+Unity project by Ladisla0
