@@ -10,6 +10,7 @@ public class Extracter : MonoBehaviour
 
     private WaitForSeconds _coolDown;
     private WaitForSeconds _slashDuration;
+    private Coroutine _lastSlash;
 
     private void Start()
     {
@@ -32,11 +33,17 @@ public class Extracter : MonoBehaviour
         }
 
         _slashed?.Invoke(false);
-        source.gameObject.SetActive(false);
     }
 
     public void Extract(Source source)
     {
-        StartCoroutine(Slashing(source));
+        _lastSlash = StartCoroutine(Slashing(source));
+    }
+
+    public void StopExtract()
+    {
+        _slashed?.Invoke(false);
+
+        StopCoroutine(_lastSlash);
     }
 }

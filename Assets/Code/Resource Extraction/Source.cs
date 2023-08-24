@@ -1,28 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using NTC.Global.Pool;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Source : MonoBehaviour
 {
     [SerializeField] private ResourceSourceConfig _config;
+    [SerializeField] private UnityEvent _stateChanged;
+    [SerializeField] private UnityEvent _broked;
 
     [Header("Spawn properties")]
+    [SerializeField] private float _rechargeTime;
     [SerializeField] private float _height = 1f;
     [SerializeField] private Quaternion _rotation = Quaternion.identity;
 
     private Stack<State> _states = new();
     private State _currentState;
+    private Collider _collider;
 
     private void Start()
     {
+        _collider = GetComponent<Collider>();
+
         Spawn();
     }
 
     private void Spawn()
     {
-        foreach(var state in _config.States)
+        if(_currentState)
+            _currentState.Destroy();
+
+        foreach (var state in _config.States)
         {
             var position = transform.position + new Vector3(0, _height, 0);
-            var newState = Instantiate(state, position, _rotation, transform);
+            var newState = NightPool.Spawn(state, position, _rotation);
+            newState.transform.parent = transform;
 
             newState.Hide();
 
@@ -31,7 +43,11 @@ public abstract class Source : MonoBehaviour
 
         _currentState = _states.Pop();
 
+        _currentState.GrowUp();
         _currentState.Show();
+        
+
+        Enable();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,21 +58,56 @@ public abstract class Source : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.TryGetComponent(out Extracter player))
+        {
+            player.StopExtract();
+        }
+    }
+
+    private void Enable()
+    {
+        _collider.enabled = true;
+    }
+
+    private void Disable()
+    {
+        _collider.enabled = false;
+    }
+
+    protected abstract void DropResource(Vector3 position);
+
     public bool TryChangeState()
     {
-        _currentState.Hide();
+        if (_states.Count == 0)
+            return false;
 
-        if(_states.TryPop(out _currentState))
+        _currentState.Destroy();
+
+        if (_states.Count > 1)
         {
+            _currentState = _states.Pop();
             _currentState.Show();
+
+            _stateChanged?.Invoke();
+
+            DropResource(transform.position);
 
             return true;
         }
 
+        if(_states.TryPop(out _currentState))
+            _currentState.Show();
+
         DropResource(transform.position);
+
+        _broked?.Invoke();
+
+        Disable();
+
+        Invoke(nameof(Spawn), _rechargeTime);
 
         return false;
     }
-
-    protected abstract void DropResource(Vector3 position);
 }

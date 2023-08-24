@@ -8,18 +8,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Green
-  m_Shader: {fileID: 4800000, guid: c4ae631e7daaae74eb5266cfa7a61b79, type: 3}
+  m_Shader: {fileID: 4800000, guid: 371dee73dabc89140878360402049bfc, type: 3}
   m_ValidKeywords:
   - _MK_ARTISTIC_ANIMATION_STUTTER
   - _MK_DETAIL_BLEND_MIX
   - _MK_ENVIRONMENT_REFLECTIONS_AMBIENT
   - _MK_FRESNEL_HIGHLIGHTS
   - _MK_LIGHT_CEL
+  - _MK_OUTLINE_HULL_CLIP
   - _MK_SPECULAR_ISOTROPIC
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _FRESNELHIGHLIGHTS_ON
-  - _MK_OUTLINE_HULL_CLIP
   - _MK_RECEIVE_SHADOWS
   - _RECEIVESHADOWS_ON
   - _WRAPPEDLIGHTING_ON
@@ -248,8 +248,8 @@ Material:
     - _OutlineFadeMax: 2
     - _OutlineFadeMin: 0.25
     - _OutlineNoise: 0
-    - _OutlineSize: 5
-    - _OutlineTab: 0
+    - _OutlineSize: 100
+    - _OutlineTab: 1
     - _Parallax: 0.02
     - _ParticlesTab: 0
     - _ReceiveShadows: 1
