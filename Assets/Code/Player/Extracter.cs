@@ -44,6 +44,7 @@ public class Extracter : MonoBehaviour
     {
         _slashed?.Invoke(false);
 
-        StopCoroutine(_lastSlash);
+        if(_lastSlash != null )
+            StopCoroutine(_lastSlash);
     }
 }

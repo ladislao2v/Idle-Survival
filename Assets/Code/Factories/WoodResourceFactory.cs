@@ -13,9 +13,14 @@ public sealed class WoodResourceFactory : MonoBehaviour
 
     public void Spawn(Vector3 position)
     {
-        var drop = NightPool.Spawn(_config.Prefab as Wood, position + _offset, _rotation);
+        var spawnPosition = position + _offset;
+
+        var drop = NightPool.Spawn(_config.Prefab as Wood, spawnPosition, _rotation);
 
         drop.transform.localScale = _scale;
         drop.transform.parent = _parent;
+
+        if(drop.TryGetComponent(out ResourceAnimator animator))
+            animator.Jump(spawnPosition);
     }
 }

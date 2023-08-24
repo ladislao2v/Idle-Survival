@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scale: {x: 0.45, y: 0.755, z: 0.755}
+  _lenght: 3
   _duration: 1
   _jumpPower: 4
   _stayDuration: 1

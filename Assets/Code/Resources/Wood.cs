@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(ResourceAnimation))]
+[RequireComponent(typeof(ResourceAnimator))]
 public sealed class Wood : MonoBehaviour, IResource
 {
     [SerializeField] private int _count = 1;
 
-    private ResourceAnimation _animation;
+    private ResourceAnimator _animator;
 
     public int Count => _count;
 
-    private void Start()
+    private void Awake()
     {
-        _animation = GetComponent<ResourceAnimation>();
+        _animator = GetComponent<ResourceAnimator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +19,7 @@ public sealed class Wood : MonoBehaviour, IResource
         if(other.TryGetComponent(out Player player))
         {
             if (player.TryPutResource(this))
-                _animation.StartMoveAnimation();
+                _animator.PickUp();
         }
     }
 }
