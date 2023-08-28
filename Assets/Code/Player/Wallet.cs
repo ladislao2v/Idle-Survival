@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Wallet : MonoBehaviour
 {
+    [SerializeField] private UnityEvent<int> _moneyCountChanged;
+
     private int _money = 0;
 
     public int Money => _money;

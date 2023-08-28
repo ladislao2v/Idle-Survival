@@ -6,19 +6,19 @@ public class ResourceConfig : ScriptableObject
     [SerializeField] private Sprite _sprite;
     [SerializeField] private GameObject _prefab;
 
-    private IResource _resourcePrefab;
+    private Resource _resourcePrefab;
 
     private void OnValidate()
     {
         if(_prefab == null)
             return;
 
-        if(!_prefab.TryGetComponent(out IResource resource))
+        if(!_prefab.TryGetComponent(out Resource resource))
             _prefab = null;
         else
             _resourcePrefab = resource;
     }
 
     public Sprite Sprite => _sprite;
-    public IResource Prefab => _resourcePrefab;
+    public Resource Prefab => _resourcePrefab;
 }

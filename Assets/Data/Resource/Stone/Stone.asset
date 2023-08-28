@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 80d6a57e30a9ff24390a9dab424243f9, type: 3}
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 5975511238560557335, guid: 7c61fc43b3b06ef41995c8d8279f2d26, type: 3}

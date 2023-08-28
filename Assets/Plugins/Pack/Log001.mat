@@ -17,6 +17,7 @@ Material:
   - _MK_LIGHT_CEL
   - _MK_OUTLINE_HULL_CLIP
   - _MK_SPECULAR_ISOTROPIC
+  - _MK_WORKFLOW_SPECULAR
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _FRESNELHIGHLIGHTS_ON
@@ -256,7 +257,7 @@ Material:
     - _Roughness: 0.5
     - _Saturation: 1
     - _SketchMapScale: 1
-    - _Smoothness: 0.846
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _Specular: 1
     - _SpecularHighlights: 1
@@ -279,7 +280,7 @@ Material:
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
     - _VertexAnimationStutter: 0
-    - _Workflow: 0
+    - _Workflow: 1
     - _WrappedLighting: 1
     - _ZTest: 4
     - _ZWrite: 1

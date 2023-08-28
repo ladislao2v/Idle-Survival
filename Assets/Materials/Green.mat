@@ -8,18 +8,20 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Green
-  m_Shader: {fileID: 4800000, guid: 371dee73dabc89140878360402049bfc, type: 3}
+  m_Shader: {fileID: 4800000, guid: c4ae631e7daaae74eb5266cfa7a61b79, type: 3}
   m_ValidKeywords:
+  - _MK_ALBEDO_MAP
   - _MK_ARTISTIC_ANIMATION_STUTTER
   - _MK_DETAIL_BLEND_MIX
   - _MK_ENVIRONMENT_REFLECTIONS_AMBIENT
   - _MK_FRESNEL_HIGHLIGHTS
   - _MK_LIGHT_CEL
-  - _MK_OUTLINE_HULL_CLIP
   - _MK_SPECULAR_ISOTROPIC
+  - _MK_WORKFLOW_SPECULAR
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _FRESNELHIGHLIGHTS_ON
+  - _MK_OUTLINE_HULL_CLIP
   - _MK_RECEIVE_SHADOWS
   - _RECEIVESHADOWS_ON
   - _WRAPPEDLIGHTING_ON
@@ -35,7 +37,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AlbedoMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 73a7f3096c91059459736d54111085c8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -111,7 +113,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 73a7f3096c91059459736d54111085c8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -262,7 +264,7 @@ Material:
     - _Roughness: 0.5
     - _Saturation: 1
     - _SketchMapScale: 1
-    - _Smoothness: 0.499
+    - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SoftFade: 0
     - _SoftFadeFarDistance: 1
@@ -288,13 +290,13 @@ Material:
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
     - _VertexAnimationStutter: 0
-    - _Workflow: 0
+    - _Workflow: 1
     - _WrappedLighting: 1
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.6, g: 0.7607843, b: 0.3019608, a: 1}
-    - _Color: {r: 0.6, g: 0.7607843, b: 0.3019608, a: 1}
+    - _AlbedoColor: {r: 0.38459152, g: 0.509434, b: 0.15571378, a: 1}
+    - _Color: {r: 0.38459152, g: 0.509434, b: 0.15571378, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
@@ -306,6 +308,6 @@ Material:
     - _RimBrightColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimDarkColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecularColor: {r: 0.203125, g: 0.203125, b: 0.203125, a: 1}
+    - _SpecularColor: {r: 0, g: 0, b: 0, a: 1}
     - _VertexAnimationFrequency: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   m_BuildTextureStacks: []

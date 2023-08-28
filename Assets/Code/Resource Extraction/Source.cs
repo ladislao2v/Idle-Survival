@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class Source : MonoBehaviour
+[RequireComponent(typeof(ResourceFactory))]
+public class Source : MonoBehaviour
 {
     [SerializeField] private ResourceSourceConfig _config;
     [SerializeField] private UnityEvent _stateChanged;
@@ -14,12 +15,19 @@ public abstract class Source : MonoBehaviour
     [SerializeField] private float _height = 1f;
     [SerializeField] private Quaternion _rotation = Quaternion.identity;
 
+    [Header("Tool")]
+    [SerializeField] private ToolType _type;
+
     private Stack<State> _states = new();
     private State _currentState;
     private Collider _collider;
+    private ResourceFactory _factory;
+
+    public ToolType Type => _type;
 
     private void Start()
     {
+        _factory = GetComponent<ResourceFactory>();
         _collider = GetComponent<Collider>();
 
         Spawn();
@@ -76,7 +84,10 @@ public abstract class Source : MonoBehaviour
         _collider.enabled = false;
     }
 
-    protected abstract void DropResource(Vector3 position);
+    private void DropResource(Vector3 position)
+    {
+        _factory.Spawn(position);
+    }
 
     public bool TryChangeState()
     {

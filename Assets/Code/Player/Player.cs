@@ -1,56 +1,37 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Wallet))]
+[RequireComponent(typeof(Storage))]
 public sealed class Player : MonoBehaviour
 {
-    [SerializeField] private UnityEvent<int> _resourceCountChanged;
-    [SerializeField] private UnityEvent<int> _moneyCountChanged;
-
-    private IBank[] _banks;
+    private Storage _storage;
     private Wallet _wallet;
 
-    public IBank[] Banks => _banks;
-
-    private void Start()
+    private void Awake()
     {
         _wallet = GetComponent<Wallet>();
+        _storage = GetComponent<Storage>();
     }
 
     public void Init(params IBank[] banks)
     {
-        _banks = banks;
+        _storage.Init(banks);
     }
 
     public void AddMoney(int value)
     {
         _wallet.Add(value);
-
-        _moneyCountChanged?.Invoke(_wallet.Money);
     }
 
     public void SpendMoney(int value)
     {
         _wallet.Spend(value);
-
-        _moneyCountChanged?.Invoke(_wallet.Money);
     }
 
     public bool TryPutResource(IResource resource)
     {
-        foreach (var bank in _banks)
-        {
-            if(bank.TryAdd(resource))
-            {
-                _resourceCountChanged?.Invoke(bank.Count);
-
-                return true;
-            }
-
-        }
-
-        return false;
+        return _storage.TryPutResourses(resource);
     }
 
     public int SpendResource(IBank bank)
@@ -58,8 +39,6 @@ public sealed class Player : MonoBehaviour
         var count = bank.Count;
 
         bank.Spend(count);
-
-        _resourceCountChanged?.Invoke(bank.Count);
 
         return count * 2;
     }

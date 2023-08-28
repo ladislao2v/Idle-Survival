@@ -8,6 +8,9 @@ public sealed class Bank<T> : IBank where T : IResource
 
     public bool TryAdd(IResource resource)
     {
+        if (resource == null)
+            return false;
+
         if (resource is not T)
             return false;
 

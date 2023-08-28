@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c5c66f9df25d7488206f0fec0d042e, type: 3}
+  m_Name: Oak
+  m_EditorClassIdentifier: 
+  _states:
+  - {fileID: 941121060098610737, guid: 4db27fb7724cddd4bb87048083b6c40d, type: 3}
+  - {fileID: 6320494587685743343, guid: 12f2cb0c37c1f204a998d914b01a16ad, type: 3}
+  - {fileID: 6320494587685743343, guid: 12f2cb0c37c1f204a998d914b01a16ad, type: 3}
+  - {fileID: 849695042890052890, guid: 3363f9757b0b2b84a84b05c565a45d9e, type: 3}
+  - {fileID: 849695042890052890, guid: 3363f9757b0b2b84a84b05c565a45d9e, type: 3}

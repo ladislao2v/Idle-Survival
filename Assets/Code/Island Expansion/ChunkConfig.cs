@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ChunkConfig : MonoBehaviour
+[CreateAssetMenu(fileName = "new ChunkConfig", menuName = "Gameplay/ChunkConfig")]
+public class ChunkConfig : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int _price;
+    [SerializeField] private GameObject _filling;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int Price => _price;
+    public GameObject Filling => _filling;
 }
