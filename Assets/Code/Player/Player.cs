@@ -14,7 +14,7 @@ public sealed class Player : MonoBehaviour
         _storage = GetComponent<Storage>();
     }
 
-    public void Init(params IBank[] banks)
+    public void Init(Bank[] banks)
     {
         _storage.Init(banks);
     }
@@ -24,9 +24,14 @@ public sealed class Player : MonoBehaviour
         _wallet.Add(value);
     }
 
-    public void SpendMoney(int value)
+    public bool TrySpendMoney(int value)
     {
-        _wallet.Spend(value);
+        return _wallet.TrySpend(value);
+    }
+
+    public int GetCurrentMoney()
+    {
+        return _wallet.Money;
     }
 
     public bool TryPutResource(IResource resource)
@@ -34,12 +39,13 @@ public sealed class Player : MonoBehaviour
         return _storage.TryPutResourses(resource);
     }
 
-    public int SpendResource(IBank bank)
+    public bool TrySpendResource(ResourceType type, int value)
     {
-        var count = bank.Count;
+        return _storage.TrySpendResource(type, value);
+    }
 
-        bank.Spend(count);
-
-        return count * 2;
+    public int GetCurrentResourceCount(ResourceType type)
+    {
+        return _storage.GetCurrentResourceCount(type);
     }
 }

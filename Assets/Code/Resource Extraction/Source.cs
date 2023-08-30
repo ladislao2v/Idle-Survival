@@ -33,31 +33,6 @@ public class Source : MonoBehaviour
         Spawn();
     }
 
-    private void Spawn()
-    {
-        if(_currentState)
-            _currentState.Destroy();
-
-        foreach (var state in _config.States)
-        {
-            var position = transform.position + new Vector3(0, _height, 0);
-            var newState = NightPool.Spawn(state, position, _rotation);
-            newState.transform.parent = transform;
-
-            newState.Hide();
-
-            _states.Push(newState);
-        }
-
-        _currentState = _states.Pop();
-
-        _currentState.GrowUp();
-        _currentState.Show();
-        
-
-        Enable();
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.TryGetComponent(out Extracter player))
@@ -82,6 +57,31 @@ public class Source : MonoBehaviour
     private void Disable()
     {
         _collider.enabled = false;
+    }
+
+    private void Spawn()
+    {
+        if (_currentState)
+            _currentState.Destroy();
+
+        foreach (var state in _config.States)
+        {
+            var position = transform.position + new Vector3(0, _height, 0);
+            var newState = NightPool.Spawn(state, position, _rotation);
+            newState.transform.parent = transform;
+
+            newState.Hide();
+
+            _states.Push(newState);
+        }
+
+        _currentState = _states.Pop();
+
+        _currentState.GrowUp();
+        _currentState.Show();
+
+
+        Enable();
     }
 
     private void DropResource(Vector3 position)

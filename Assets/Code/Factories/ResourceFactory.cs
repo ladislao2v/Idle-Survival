@@ -1,4 +1,5 @@
-﻿using NTC.Global.Pool;
+﻿using DG.Tweening;
+using NTC.Global.Pool;
 using UnityEngine;
 
 public sealed class ResourceFactory : MonoBehaviour
@@ -18,7 +19,21 @@ public sealed class ResourceFactory : MonoBehaviour
 
         drop.transform.parent = _parent;
 
-        if(drop.TryGetComponent(out ResourceAnimator animator))
+        if (drop.TryGetComponent(out Collider collider))
+            collider.enabled = true;
+
+        if (drop.TryGetComponent(out ResourceAnimator animator))
             animator.Jump(spawnPosition);
+    }
+
+    public void SpawnResource(ResourceConfig config, Vector3 startPosition, Vector3 endPosition)
+    {
+        var resource = NightPool.Spawn(config.Prefab, startPosition + _offset);
+
+        if (resource.TryGetComponent(out Collider collider))
+            collider.enabled = false;
+
+        if (resource.TryGetComponent(out ResourceAnimator animator))
+            animator.JumpTo(endPosition);
     }
 }

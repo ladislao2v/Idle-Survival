@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public sealed class Boot : MonoBehaviour
@@ -12,17 +13,22 @@ public sealed class Boot : MonoBehaviour
     [SerializeField] UserInput _input;
     [SerializeField] private FloatingJoystick _floatingJoystick;
 
-    private Bank<Wood> _woodBank;
-    private Bank<Rock> _rockBank;
+    [Header("Resources")]
+    [SerializeField] private ResourceType[] _resources;
+
+    private List<Bank> _banks = new List<Bank>();
+
 
     private void Start()
     {
         _camera.Init(_player);
 
-        _woodBank = new();
-        _rockBank = new();
+        foreach (var type in _resources)
+        {
+            _banks.Add(new Bank(type));
+        }
 
-        _player.Init(_woodBank, _rockBank);
+        _player.Init(_banks.ToArray());
         _input.Init(_floatingJoystick, _mover);
     }
 }

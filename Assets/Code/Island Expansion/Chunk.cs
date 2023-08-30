@@ -34,7 +34,8 @@ public class Chunk : MonoBehaviour
 
         if (other.TryGetComponent(out Player player))
         {
-            Build(this);
+            if(player.TrySpendMoney(_config.Price))
+                Build(this);
         }
     }
 

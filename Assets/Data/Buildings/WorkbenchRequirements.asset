@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2a6f3c462bc8649b8131477155686e, type: 3}
+  m_Name: WorkbenchRequirements
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 8311822234845861848, guid: b6e3e5d22a0df434eb07285b2052c88b, type: 3}
+  _requirements:
+  - _resource: {fileID: 11400000, guid: 144736e871b5fa648a591bdef87d06ef, type: 2}
+    _count: 1
+  - _resource: {fileID: 11400000, guid: f897de8b71637a64f820378437bbc22a, type: 2}
+    _count: 1

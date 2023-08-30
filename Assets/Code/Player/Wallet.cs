@@ -15,13 +15,23 @@ public class Wallet : MonoBehaviour
             throw new System.ArgumentException("Value is not correctly");
 
         _money += value;
+
+        _moneyCountChanged?.Invoke(_money);
     }
 
-    public void Spend(int value)
+    public bool TrySpend(int value)
     {
-        if (value < 0 && value > _money)
-            throw new System.ArgumentException("Value is not correctly");
+        Debug.Log(value);
+
+        if (value < 0 || value > _money)
+        {
+            return false;
+        }
 
         _money -= value;
+
+        _moneyCountChanged?.Invoke(_money);
+
+        return true;
     }
 }

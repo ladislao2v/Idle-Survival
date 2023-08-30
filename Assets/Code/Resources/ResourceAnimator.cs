@@ -52,4 +52,12 @@ public class ResourceAnimator : MonoBehaviour
     {
         NightPool.Despawn(this);
     }
+
+    public void JumpTo(Vector3 endPosition)
+    {
+        Sequence sequence = DOTween.Sequence();
+
+        sequence.Append(transform.DOJump(endPosition, _jumpPower, 1, _duration))
+            .AppendCallback(Disable);
+    }
 }

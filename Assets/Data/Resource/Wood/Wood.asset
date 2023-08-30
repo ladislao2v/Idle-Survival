@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: 9df7c2326b9afc54cb260eeb477954ec, type: 3}
-  _prefab: {fileID: 6605014812592576041, guid: cba272743e3e781478fee6de6cf9ae1e, type: 3}
+  _prefab: {fileID: 346385765181113989, guid: cba272743e3e781478fee6de6cf9ae1e, type: 3}

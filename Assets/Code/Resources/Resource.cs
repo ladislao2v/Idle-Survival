@@ -3,11 +3,13 @@
 [RequireComponent(typeof(ResourceAnimator))]
 public class Resource : MonoBehaviour, IResource
 {
+    [SerializeField] private ResourceType _resourceType;
     [SerializeField] private int _count = 1;
 
     private ResourceAnimator _animator;
 
     public int Count => _count;
+    public ResourceType Type => _resourceType;
 
     private void Awake()
     {

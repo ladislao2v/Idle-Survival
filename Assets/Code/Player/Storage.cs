@@ -9,9 +9,9 @@ public class Storage : MonoBehaviour
     [SerializeField] private int _maxCapacity;
 
     private int _currentCapacity = 0;
-    private IBank[] _banks;
+    private Bank[] _banks;
     
-    public void Init(IBank[] banks)
+    public void Init(Bank[] banks)
     {
         foreach (var bank in banks)
             if (bank == null)
@@ -20,7 +20,7 @@ public class Storage : MonoBehaviour
         _banks = banks;
 
         if (_banks.Length != _resourceChangedEvents.Length)
-            throw new System.Exception("You shoud add ResourceView to events array");
+            throw new Exception("You shoud add ResourceView to events array");
 
         _capacityChanged?.Invoke(_currentCapacity, _maxCapacity);
     }
@@ -53,5 +53,31 @@ public class Storage : MonoBehaviour
         }
 
         return false;
+    }
+
+    public bool TrySpendResource(ResourceType type, int value)
+    {
+        for (int i = 0; i < _banks.Length; i++)
+        {
+            if (_banks[i].TrySpend(type, value))
+            {
+                _resourceChangedEvents[i]?.Invoke(_banks[i].Count);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public int GetCurrentResourceCount(ResourceType type)
+    {
+        foreach (var bank in _banks)
+        {
+            if (bank.IsKeep(type))
+                return bank.Count;
+        }
+
+        throw new ArgumentException($"Bank of {type} is not exist");
     }
 }
