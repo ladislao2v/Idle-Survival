@@ -21,8 +21,6 @@ public class Wallet : MonoBehaviour
 
     public bool TrySpend(int value)
     {
-        Debug.Log(value);
-
         if (value < 0 || value > _money)
         {
             return false;

@@ -4,7 +4,7 @@ using UnityEngine;
 public class BuildingPlace : MonoBehaviour
 {
     [SerializeField] private BuildingConfig _config;
-    [SerializeField] private RequirementsView _view;
+    [SerializeField] private RequirementPanel _view;
     [SerializeField] private GameObject _arrow;
 
     private Collider _collider;
@@ -16,31 +16,17 @@ public class BuildingPlace : MonoBehaviour
 
     private void Start()
     {
-        _view.Init(_config.Requirements);
+        _view.Init(_config.Requirement);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent(out Player player))
         {
-            Debug.Log("Yes");
-
-            int satisfiedCount = 0;
-
-            foreach (var requirement in _config.Requirements)
-            {
-                if(requirement.TryGrant(player))
-                {
-                    satisfiedCount++;
-                }    
-            }
-
-            if(satisfiedCount == _config.Requirements.Length)
+            if(_config.Requirement.TryGrant(player))
             {
                 Build();
             }
-
-            Debug.Log(satisfiedCount);
         }
     }
 

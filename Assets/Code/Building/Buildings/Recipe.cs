@@ -10,9 +10,12 @@ public class Recipe
 
     public ResourceConfig Config => _resource;
 
-    public bool CanBuy(Player player)
+    public bool CanBuy(Player player, out int resourceCount)
     {
-        int resourceCount = player.GetCurrentResourceCount(_resource.ResourceType) / _count;
+        resourceCount = player.GetCurrentResourceCount(_resource.ResourceType) / _count;
+
+        if (resourceCount == 0)
+            return false;
 
         if(player.TrySpendResource(_resource.ResourceType, _count * resourceCount))
         {

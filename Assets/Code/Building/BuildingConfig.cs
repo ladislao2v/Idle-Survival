@@ -4,8 +4,8 @@ using UnityEngine;
 public class BuildingConfig : ScriptableObject
 {
     [SerializeField] private Building _prefab;
-    [SerializeField] private Requirement[] _requirements;
+    [SerializeField] private Requirement _requirement;
 
     public Building Prefab => _prefab;
-    public Requirement[] Requirements => _requirements;
+    public Requirement Requirement => _requirement;
 }
