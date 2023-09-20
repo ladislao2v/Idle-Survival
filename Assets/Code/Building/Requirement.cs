@@ -9,6 +9,7 @@ public class Requirement
 
     public Sprite Sprite => _resource.Sprite;
     public ResourceType ResourceType => _resource.ResourceType;
+    public ResourceConfig Config => _resource;
     public int Count => _count;
 
     public bool TryGrant(Player player)

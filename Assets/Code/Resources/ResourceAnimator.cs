@@ -1,11 +1,12 @@
 using DG.Tweening;
-using JetBrains.Annotations;
 using NTC.Global.Pool;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class ResourceAnimator : MonoBehaviour
 {
     [SerializeField] private Vector3 _scale;
+    [SerializeField] private AudioClip _sound;
 
     [Header("Jumping")]
     [SerializeField] private float _lenght;
@@ -22,10 +23,12 @@ public class ResourceAnimator : MonoBehaviour
     [SerializeField] private float _moveDuration;
 
     private Transform _camera;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
         _camera = Camera.main.transform;
+        _audioSource = GetComponent<AudioSource>();
 
         transform.DOScale(_scale, _stayDuration).SetEase(_ease).SetLoops(-1, LoopType.Yoyo);
     }
@@ -40,6 +43,8 @@ public class ResourceAnimator : MonoBehaviour
 
     public void PickUp()
     {
+        _audioSource.PlayOneShot(_sound);
+
         Sequence sequence = DOTween.Sequence();
 
         sequence.Append(transform.DOMove(_camera.position + _offset, _moveDuration))
@@ -55,6 +60,8 @@ public class ResourceAnimator : MonoBehaviour
 
     public void JumpTo(Vector3 endPosition)
     {
+        _audioSource.PlayOneShot(_sound);
+
         Sequence sequence = DOTween.Sequence();
 
         sequence.Append(transform.DOJump(endPosition, _jumpPower, 1, _duration))

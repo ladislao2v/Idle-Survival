@@ -15,4 +15,4 @@ MonoBehaviour:
   _prefab: {fileID: 8311822234845861848, guid: b6e3e5d22a0df434eb07285b2052c88b, type: 3}
   _requirement:
     _resource: {fileID: 11400000, guid: 144736e871b5fa648a591bdef87d06ef, type: 2}
-    _count: 1
+    _count: 5

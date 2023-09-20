@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,7 +14,7 @@ public class Wallet : MonoBehaviour
     public void Add(int value)
     {
         if (value < 0)
-            throw new System.ArgumentException("Value is not correctly");
+            throw new ArgumentException("Value is not correctly");
 
         _money += value;
 
@@ -22,9 +24,7 @@ public class Wallet : MonoBehaviour
     public bool TrySpend(int value)
     {
         if (value < 0 || value > _money)
-        {
             return false;
-        }
 
         _money -= value;
 

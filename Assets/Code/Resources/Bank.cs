@@ -16,13 +16,18 @@ public sealed class Bank
 
     public bool TryAdd(IResource resource)
     {
-        if (resource.Type != _resourceType)
+        return TryAdd(resource.Type, resource.Count);
+    }
+
+    public bool TryAdd(ResourceType type, int value)
+    {
+        if (type != _resourceType)
             return false;
 
-        if (resource.Count < 0)
+        if (value < 0)
             return false;
 
-        _count += resource.Count;
+        _count += value;
 
         return true;
     }

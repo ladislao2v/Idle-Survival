@@ -1,8 +1,11 @@
 using NTC.Global.Pool;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Chunk : MonoBehaviour
 {
+    [SerializeField] private AudioClip _buildSound;
+
     [Header("Properties")] 
     [SerializeField] private ChunkConfig _config;
     [SerializeField] private bool _isFirst;
@@ -14,12 +17,14 @@ public class Chunk : MonoBehaviour
     [SerializeField] private ChunkView _chunkPanel;
 
     private bool _isActive;
+    private AudioSource _audioSource;
     private GameObject _filling;
 
     public bool IsActive => _isActive;
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _chunkPanel.Init(_config.Price);
 
         Spawn();
@@ -49,6 +54,8 @@ public class Chunk : MonoBehaviour
 
     private void Build(Chunk chunk)
     {
+        _audioSource.PlayOneShot(_buildSound);
+
         chunk.Show();
 
         chunk.ShowAvailableChunks();

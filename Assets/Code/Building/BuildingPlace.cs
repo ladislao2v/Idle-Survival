@@ -1,11 +1,13 @@
+using DG.Tweening;
 using NTC.Global.Pool;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BuildingPlace : MonoBehaviour
 {
     [SerializeField] private BuildingConfig _config;
     [SerializeField] private RequirementPanel _view;
-    [SerializeField] private GameObject _arrow;
+    [SerializeField] private UnityEvent _builded;
 
     private Collider _collider;
 
@@ -25,6 +27,11 @@ public class BuildingPlace : MonoBehaviour
         {
             if(_config.Requirement.TryGrant(player))
             {
+                StartCoroutine(player.SpawnResources(_config.Requirement.Config, 
+                    _config.Requirement.Count, 
+                    player.transform, 
+                    transform));
+
                 Build();
             }
         }
@@ -34,8 +41,12 @@ public class BuildingPlace : MonoBehaviour
     {
         _collider.enabled = false;
         _view.Hide();
-        _arrow.SetActive(false);
 
         var building = NightPool.Spawn(_config.Prefab, transform);
+
+        building.transform.localScale = Vector3.zero;
+        building.transform.DOScale(Vector3.one, 1f);
+
+        _builded?.Invoke();
     }
 }
